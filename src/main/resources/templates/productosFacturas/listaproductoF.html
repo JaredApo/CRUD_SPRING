@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/plantillaProducto :: head"></head>
+<body>
+	<header th:replace="plantilla/plantilla :: header"></header>
+	<div class="container">
+		<h1 class="text-secondary border border-success border-top-0">Lista
+			productos</h1>
+		<br />
+			<table class="table table-striped">
+				<thead class="table table-dark table-bordered">
+					<tr>
+						<th scope="col">ID</th>
+						<th scope="col">Producto</th>
+						<th scope="col">Precio</th>
+						<th scope="col">Agregar a Factura</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="cl: ${cls}">
+						<td th:text="${cl.idProductos}">
+						<td th:text="${cl.nombreProductos}">
+						<td th:text="${cl.precioProductos}">
+						<td>
+						<form th:action="@{/formProdFInsertar}">
+							<input type="text" name="ReferenciaFact"
+							class="form.controls" placeholder="Referencia" /> 
+							<input
+							type="text" name="cantidad" class="form.controls"
+							placeholder="Cantidad" /> 
+							<input type="submit"
+							class="btn btn-primary" /> 
+							<input type="hidden"
+							name="idProducto" th:value="${cl.idProductos}" />
+						</form>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+	</div>
+	<footer th:replace="plantilla/plantillaProducto :: footer"></footer>
+</body>
+</html>

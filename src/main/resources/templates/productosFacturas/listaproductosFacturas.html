@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/plantilla :: head"></head>
+<body>
+	<header th:replace="plantilla/plantilla :: header"></header>
+	<div class="container">
+		<h1 class="text-secondary border border-success border-top-0">Lista
+			Facturas-Productos</h1>
+		<br />
+		<div>
+			<form th:action="@{/listafacturasproductosref}" method="get">
+				<label>Factura</label> <input type="text" th:name="referencia"
+					placeholder="referencia" /> <input type="submit">
+			</form>
+		</div>
+		<table th:if="${cls!=null || !cls.isEmpty()}"
+			class="table table-striped">
+			<thead class="table table-dark table-bordered">
+				<tr>
+					<th scope="col">Factura</th>
+					<th scope="col">Productos</th>
+					<th scope="col">cantidad</th>
+					<th scope="col">Eliminar de factura</th>
+					<th scope="col">Editar relacion</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cl: ${cls}">
+					<td th:text="${cl.facturas.referenciaFacturas}">
+					<td th:text="${cl.productos.nombreProductos}">
+					<td th:text="${cl.cantidadFacturasProductos}">
+					<td><a class="btn btn-danger"
+						th:href="@{formFPEliminar/} + ${cl.facturas.idFacturas}
+					+'/'+${cl.productos.idProductos}">Eliminar</a></td>
+					<td><a class="btn btn-warning"
+						th:href="@{/formmodificarfp/} + ${cl.facturas.idFacturas}
+					+'/'+${cl.productos.idProductos}+'/'+${cl.cantidadFacturasProductos}">Editar</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<footer th:replace="plantilla/plantilla :: footer"></footer>
+</body>
+</html>

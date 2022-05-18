@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/plantilla :: head"></head>
+<body>
+	<header th:replace="plantilla/plantilla :: header"></header>
+	<div class="container">
+		<h1 class="text-secondary border border-success border-top-0">Lista
+			Clientes</h1>
+		<br />
+		<table th:if="${!cls.isEmpty()}" class="table table-striped">
+			<thead class="table table-dark table-bordered">
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Nombre</th>
+					<th scope="col">Apellido paterno</th>
+					<th scope="col">Eliminar</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cl: ${cls}">
+					<td th:text="${cl.idClientes}">
+					<td th:text="${cl.nombreClientes}">
+					<td th:text="${cl.apellidoClientes}">
+					<td><a class="btn btn-prrimary btn-xs" th:href="@{formEliminar/} + ${cl.idClientes}">Eliminar</a></td> 
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<footer th:replace="plantilla/plantilla :: footer"></footer>
+</body>
+</html>

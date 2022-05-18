@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/plantilla :: head">
+</head>
+<body>
+	<header th:replace="plantilla/plantilla :: header"> </header>
+	<div class="container">
+		<h1 class="text-secondary border border-success border-top-0">Lista
+			Facturas de [[${cliente.nombreClientes}]] [[${cliente.apellidoClientes}]]
+			con ID: [[${cliente.idClientes}]]</h1>
+		<br />
+		
+		<br />
+		<h2 th:if="${facturas.isEmpty}">No cuenta con Facturas</h2>
+		<table th:if="${!facturas.isEmpty}"
+			class="table table-striped">
+			<thead class="table table-dark table-bordered">
+				<tr>
+					<th scope="col">ID Factura</th>
+					<th scope="col">ID Cliente</th>
+					<th scope="col">Referencia</th>
+					<th scope="col">Fecha</th>
+					<th scope="col">Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="ft : ${facturas}">
+					<td th:text="${ft.idFacturas}"></td>
+					<td th:text="${ft.idClientes.idClientes}"></td>
+					<td th:text="${ft.referenciaFacturas}"></td>
+					<td th:text="${#dates.format(ft.fechaFacturas, 'dd-MM-yyyy')}"></td>
+					<td><div class="btn-group" role="group" aria-label="Basic example">
+  					<a type="button" class="btn btn-warning" th:href="@{/modificarFactura/}+${ft.idFacturas}">Editar</a>
+ 					<a class="btn btn-danger" th:href="@{/formFactEliminar/}+${ft.idFacturas}">Eliminar</a>
+					</div></td>
+				</tr>
+			</tbody>
+		</table>
+		<!--<nav th:replace="plantilla/pag-nav :: paginador"></nav>-->
+		<div class="row">
+			<div class="col-12">
+				<a class="btn btn-primary" th:href="@{/insertarFacturas/}+${cliente.idClientes}">
+				Agregar Factura</a>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="plantilla/plantilla :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/plantilla :: head">
+</head>
+<body>
+	<header th:replace="plantilla/plantilla :: header"> </header>
+	<div class="container">
+		<div class="row ">
+			<h1 th:text="${titulo}"></h1>
+		</div>
+		<div class="row">
+			<div class="col-6">
+				<form th:action="@{/formInsertarF}" th:object="${factura}"
+					method="post" >
+					<table class="table">
+						<tr>
+							<td>Referencia Factura:</td>
+							<td><input class="form-control"
+					type="text" th:field="*{referenciaFacturas}" th:errorclass="'form-control alert-danger'"
+					/></td>
+					<td><small class="form-text text-danger" 
+					th:if="${#fields.hasErrors('referenciaFacturas')}" th:errors="*{referenciaFacturas}"></small></td>
+						</tr>
+						<tr>
+							<td>Fecha:</td>
+							<td class="px-3">
+								<input type="date" th:field="*{fechaFacturas}"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'"/>
+							</td>
+						</tr>
+					</table>
+					<div class="row">
+						<input type="submit" class="btn btn-primary mt-3" />
+					</div>
+ 						<input type="hidden" th:name="id" th:value="${cliente.idClientes}"/>
+ 						<input type="hidden" th:field="*{idFacturas}"/>
+				</form>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="plantilla/plantilla :: footer"></footer>
+</body>
+</html>

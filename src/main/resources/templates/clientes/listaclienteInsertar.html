@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/plantilla :: head"></head>
+<body>
+	<header th:replace="plantilla/plantilla :: header"></header>
+	<div class="container">
+		<h1>Cliente Nuevo</h1>
+		<br />
+		<form th:action="@{/formInsertar}" th:object="${cliente}" method="post">
+			<table>
+				<tr>
+					<td>Nombre:</td>
+					<td><input class="form-control"
+					type="text" th:field="*{nombreClientes}" th:errorclass="'form-control alert-danger'"
+					/></td>
+					<td><small class="form-text text-danger" 
+					th:if="${#fields.hasErrors('nombreClientes')}" th:errors="*{nombreClientes}"></small></td>
+					
+				</tr>
+				<tr>
+					<td>Apellido paterno:</td>
+					<td><input class="form-control"
+					type="text" th:field="*{apellidoClientes}" th:errorclass="'form-control alert-danger'"
+					/></td>
+					<td><small class="form-text text-danger" 
+					th:if="${#fields.hasErrors('apellidoClientes')}" th:errors="*{apellidoClientes}"></small></td>
+				</tr>
+				<tr>
+					<td><input type="submit" /></td>
+				</tr>
+			</table>
+
+			<input type="hidden" th:field="*{idClientes}">
+		</form>
+	</div>
+	<footer th:replace="plantilla/plantilla :: footer"></footer>
+</body>
+</html>

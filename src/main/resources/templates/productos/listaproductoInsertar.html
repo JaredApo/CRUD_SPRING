@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/plantillaProducto :: head"></head>
+<body>
+	<header th:replace="plantilla/plantilla :: header"></header>
+	<div class="container">
+		<h1>Producto Nuevo</h1>
+		<br />
+		<form th:action="@{/formInsertarP}" th:object="${producto}" method="post">
+			<table>
+				<tr>
+					<td>Nombre:</td>
+					<td><input class="form-control"
+					type="text" th:field="*{nombreProductos}" th:errorclass="'form-control alert-danger'"
+					/></td>
+					<td><small class="form-text text-danger" 
+					th:if="${#fields.hasErrors('nombreProductos')}" th:errors="*{nombreProductos}"></small></td>
+				</tr>
+				<tr>
+					<td>Precio:</td>
+					<td><input class="form-control"
+					type="text" th:field="*{precioProductos}" th:errorclass="'form-control alert-danger'"
+					/></td>
+					<td><small class="form-text text-danger" 
+					th:if="${#fields.hasErrors('precioProductos')}" th:errors="*{precioProductos}"></small></td>
+				</tr>
+				<tr>
+					<td><input type="submit" /></td>
+				</tr>
+			</table>
+
+			<input type="hidden" th:field="*{idProductos}" />
+		</form>
+	</div>
+	<footer th:replace="plantilla/plantillaProducto :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/plantillaProducto :: head"></head>
+<body>
+	<header th:replace="plantilla/plantilla :: header"></header>
+	<div class="container">
+		<h1 class="text-secondary border border-success border-top-0">Lista
+			Productos</h1>
+		<br />
+		<table th:if="${!cls.isEmpty()}" class="table table-striped">
+			<thead class="table table-dark table-bordered">
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Nombre</th>
+					<th scope="col">Precio</th>
+					<th scope="col">Editar</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cl: ${cls}">
+					<td th:text="${cl.idProductos}">
+					<td th:text="${cl.nombreProductos}">
+					<td th:text="${cl.precioProductos}">
+					<td><a class="btn btn-warning" th:href="@{formInsertarP/} + ${cl.idProductos}">Editar</a></td> 
+				</tr>
+			</tbody>
+		</table>
+		<nav th:replace="plantilla/pag-nav :: paginador"></nav>
+	</div>
+	<footer th:replace="plantilla/plantillaProducto :: footer"></footer>
+</body>
+</html>
