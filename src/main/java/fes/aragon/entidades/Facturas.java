@@ -40,8 +40,7 @@ public class Facturas implements Serializable {
 	
 	@JoinColumn(name="id_clientes",referencedColumnName = "id_clientes")
 	@ManyToOne(fetch=FetchType.EAGER)
-	//así se le llama al mapeo en la clase Clientes
-	//debe ser el mismo nombre, a huevo
+	//así se le llama al mapeo en la clase Clientes, debe ser el mismo nombre
 	private Clientes idClientes;
 	
 	@Column(name="referencia_facturas")
